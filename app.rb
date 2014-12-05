@@ -43,19 +43,17 @@ private
 
 def get_city_from_ip
  begin
-  api_result = JSON.parse RestClient.get(IP_ADDRESS_API)
-  puts IpResult.new(api_result).inspect
-  sanitize_city_name api_result["city"]
+  IpResult.new(JSON.parse RestClient.get(IP_ADDRESS_API))
  rescue => e
 
  end
 end
 
-def get_weather(city_name)
+def get_weather(ip_result)
   begin
-    return RestClient.get WEATHER_BY_CITY_API + city_name
+    return RestClient.get WEATHER_BY_CITY_API + sanitize_city_name(ip_result.city)
   rescue => e
-
+    
   end
 end
 
