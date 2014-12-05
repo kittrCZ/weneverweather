@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WheneverWeather</title>
+ <meta charset="utf-8">
+ <title>WheneverWeather</title>
+ <link href="assets/application.css" rel="stylesheet">
 </head>
 <body>
-   <script type="text/x-handlebars" data-template-name="application">
-      {{ message }}
-   </script>
-   <script src="assets/javascripts/app.js"></script>
+<script type="text/x-handlebars" data-template-name='index'>
+  <p>{{#linkTo hi}}say hi{{/linkTo}}</p>
+</script>
+<script type="text/x-handlebars" data-template-name='hi'>
+  hello world!
+</script>
+
+
+
+<script src="assets/application.js"></script>
 </body>
 </html>

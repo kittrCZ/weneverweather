@@ -1,6 +1,11 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    coffee-script (2.3.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.8.0)
+    execjs (2.2.1)
     hike (1.2.3)
     json (1.8.1)
     mime-types (2.4.1)
@@ -32,6 +37,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
+  coffee-script
   json
   rest-client
   rubygems-update
