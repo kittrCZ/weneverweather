@@ -1,16 +1,21 @@
 require 'rubygems'
 require 'bundler'
-require 'sinatra'
+
+require 'sinatra/base'
 require 'json'
 require 'rest-client'
 
+require_relative 'models/init'
+
 class WheneverWeather < Sinatra::Base
+enable :sessions
 
 # CONSTANTS
 IP_ADDRESS_API = "http://ip-api.com/json"
 WEATHER_BY_CITY_API = "http://api.openweathermap.org/data/2.5/weather?q="
 
 set :show_exceptions, false
+set :title, "WheneverWeather"
 
 before do
   headers 'Access-Control-Allow-Origin' => '*',
@@ -38,8 +43,9 @@ private
 
 def get_city_from_ip
  begin
-  ip_address_info = JSON.parse RestClient.get(IP_ADDRESS_API)
-  sanitize_city_name ip_address_info["city"]
+  api_result = JSON.parse RestClient.get(IP_ADDRESS_API)
+  puts IpResult.new(api_result).inspect
+  sanitize_city_name api_result["city"]
  rescue => e
 
  end
