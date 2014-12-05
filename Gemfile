@@ -6,3 +6,6 @@ gem 'sinatra'
 gem 'json'
 gem 'rest-client'
 gem 'shotgun'
+
+gem 'sprockets'
+gem 'sass'

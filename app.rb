@@ -4,16 +4,18 @@ require 'sinatra'
 require 'json'
 require 'rest-client'
 
+class WheneverWeather < Sinatra::Base
+
+# CONSTANTS
+IP_ADDRESS_API = "http://ip-api.com/json"
+WEATHER_BY_CITY_API = "http://api.openweathermap.org/data/2.5/weather?q="
+
 set :show_exceptions, false
 
 before do
   headers 'Access-Control-Allow-Origin' => '*',
   'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
 end
-
-# CONSTANTS
-IP_ADDRESS_API = "http://ip-api.com/json"
-WEATHER_BY_CITY_API = "http://api.openweathermap.org/data/2.5/weather?q="
 
 get '/' do
   erb :layout
@@ -27,6 +29,12 @@ end
 error do
   "sinatra error handler" 
 end
+
+not_found do
+  erb :not_found
+end
+
+private
 
 def get_city_from_ip
  begin
@@ -50,4 +58,5 @@ def sanitize_city_name city_name
   clean_name.gsub! ' ', '+'  
 end
 
+end
 
